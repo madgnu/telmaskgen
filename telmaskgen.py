@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-import sys
+import sys, re
 
 def intersect(a, b):
 	c = []
@@ -26,7 +26,7 @@ def make_one(m):
 	return 0, m
 
 def print_mask(m):
-	s = '^'
+	s = ''
 	l = list(map(lambda n: sorted(list(n)), m))
 	for i in range(len(l)):
 		if len(l[i]) == 1:
@@ -35,7 +35,9 @@ def print_mask(m):
 			s = s + '.'
 		else:
 			s = s + '[' + ''.join(l[i]) + ']'
-	s = s + '$'
+	p1 = re.compile('^7') #rule N1 - replace first 7 to .*
+	s = p1.sub('.*', s)
+	s = s + '$' # rule N2 - add $ and end
 	return s
 
 def main(fname):
