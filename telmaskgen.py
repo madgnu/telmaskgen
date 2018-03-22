@@ -36,7 +36,7 @@ def print_mask(m):
 		else:
 			s = s + '[' + ''.join(l[i]) + ']'
 	p1 = re.compile('^7') #rule N1 - replace first 7 to .*
-	s = p1.sub('.*', s)
+	s = p1.sub('^.*', s)
 	s = s + '$' # rule N2 - add $ and end
 	return s
 
